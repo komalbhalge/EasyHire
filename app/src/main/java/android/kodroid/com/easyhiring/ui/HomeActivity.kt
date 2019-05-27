@@ -1,9 +1,14 @@
-package android.kodroid.com.easyhiring
+package android.kodroid.com.easyhiring.ui
 
+import android.content.Context
+import android.kodroid.com.easyhiring.R
 import android.kodroid.com.easyhiring.adapters.MyBaseAdapter
 import android.kodroid.com.easyhiring.data.CandidateData
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -11,6 +16,7 @@ import android.widget.LinearLayout
 import com.google.firebase.database.*
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.home_layout.*
 
 class HomeActivity : AppCompatActivity() {
     var mDatabase: DatabaseReference? = null
@@ -29,7 +35,13 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        init()
+        if (isNetworkAvailable()){
+            init()
+        }else{
+            val snak = Snackbar.make(root_layout,"Please check the internet connection!", Snackbar.LENGTH_LONG)
+            snak.show()
+        }
+
     }
 
     override fun onStart() {
@@ -92,5 +104,12 @@ class HomeActivity : AppCompatActivity() {
         if (mDataListener != null) {
             mDatabase!!.removeEventListener(mDataListener)
         }
+    }
+    fun isNetworkAvailable():Boolean{
+        val manager: Any? =getSystemService(Context.CONNECTIVITY_SERVICE)
+        return if (manager is ConnectivityManager){
+            val networkInfo:NetworkInfo?=manager.activeNetworkInfo
+            networkInfo?.isConnected?:false
+        }else false
     }
 }
