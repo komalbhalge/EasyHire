@@ -24,11 +24,6 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //hiding title bar of this activity
-        window.requestFeature(Window.FEATURE_NO_TITLE)
-        //making this activity full screen
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-
         setContentView(R.layout.splash_layout)
         sharedPref = getSharedPreferences(PREF_NAME, 0)
 
@@ -46,19 +41,19 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
                 finish()
             }
-        }, 4000)
+        }, 3000)
 
     }
 
     private fun getCandidateList(): ArrayList<CandidateData> {
         val items = ArrayList<CandidateData>()
         //adding some dummy data to the list
-        items.add(CandidateData("0", CandidateStatus.NONE.ordinal, "Jon Snow", "I am an Android Developer with 4 years of experience I am an Android Developer with 4 years of experience I am an Android Developer with 4 years of experience", "https://cdn3.vectorstock.com/i/1000x1000/44/37/cute-face-little-girl-ballerina-cartoon-character-vector-18274437.jpg"))
-        items.add(CandidateData("0", CandidateStatus.NONE.ordinal, "Arya Stark", "I am an Android Developer with 9 years of experience", "https://cdn2.vectorstock.com/i/1000x1000/19/91/cute-cartoon-girl-laugh-face-expression-vector-15161991.jpg"))
-        items.add(CandidateData("0", CandidateStatus.NONE.ordinal, "Joffrey Baratheon", "I am an Android Developer with 1 years of experience", "https://t3.ftcdn.net/jpg/01/38/22/38/500_F_138223845_1sz6vri7VLHeqFRjjP4JOvxdglvcLz9C.jpg"))
-        items.add(CandidateData("0", CandidateStatus.NONE.ordinal, "KOMAL BHALGE", "I am an Android Developer with 3 years of experience", "http://www.melisendevector.com/images/Image/girl_head_rock_style_preview_1364119809.jpg"))
-        items.add(CandidateData("0", CandidateStatus.NONE.ordinal, "Brandon Stark", "I am an Android Developer with 4 years of experience", "http://www.melisendevector.com/images/Image/Cartoon-Black-Boy---Wavy-Hairstyle.jpg"))
-        items.add(CandidateData("0", CandidateStatus.SHORTLISTED.ordinal, "Tyrion Lannister", "I am an Android Developer with 6 years of experience", "https://cdn1.vectorstock.com/i/1000x1000/40/25/cartoon-character-face-boy-children-vector-14814025.jpg"))
+        items.add(CandidateData("0", CandidateStatus.NONE.ordinal, "Jon Snow", getString(R.string.jon_intro), "https://pbs.twimg.com/profile_images/901947348699545601/hqRMHITj_400x400.jpg"))
+        items.add(CandidateData("0", CandidateStatus.NONE.ordinal, "Arya Stark", getString(R.string.arya_intro), "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRavDJk9fj_Z_X3_cUUMfrZWafLMbsAm7KPGjum4ebKpks6CMyG"))
+        items.add(CandidateData("0", CandidateStatus.NONE.ordinal, "Joffrey Baratheon", getString(R.string.joff_intro), "https://i.dailymail.co.uk/i/pix/2014/06/26/article-0-1ED7483100000578-525_470x423.jpg"))
+        items.add(CandidateData("0", CandidateStatus.NONE.ordinal, "KOMAL BHALGE", getString(R.string.komal_intro), "https://pbs.twimg.com/profile_images/899649475030900736/_MnbkXcQ_400x400.jpg"))
+        items.add(CandidateData("0", CandidateStatus.NONE.ordinal, "Melisandre", getString(R.string.melisa_intro), "https://lovelace-media.imgix.net/uploads/915/0dbafd40-eef0-0133-2443-0e1b1c96d76b.jpg"))
+        items.add(CandidateData("0", CandidateStatus.SHORTLISTED.ordinal, "Tyrion Lannister", getString(R.string.tyri_intro), "https://pbs.twimg.com/profile_images/1338985026/Picture_1.png"))
         return items
     }
 

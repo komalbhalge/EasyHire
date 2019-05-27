@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Easy Hiring</string>
-    <string name="dialog_text">"Are you sure you want to change the status?</string>
+    <string name="dialog_text">Are you sure you want to change the status?</string>
+    <string name="arya_intro">I enjoy being challenged and engaging with projects that require me to work outside my comfort and knowledge set, as continuing to learn new languages and development techniques are important to me and the success of your organization.</string>
+    <string name="komal_intro">I have 5 years of IT experience. I believe in dreams, If you can dream it, you can make it, nothing is impossible!
+Learning anything which will break my monotonous routine excites me. Mobile app development fascinates me as it offers a great platform to convert your ideas to an APP which can be reached out to mass end users in lesser time.</string>
+    <string name="joff_intro">Experienced designing and developing software for business solutions. Software engineer with experience in multiple settings can design and develop programs using the latest and most appropriate technology. </string>
+<string name="melisa_intro">I am proficient in the latest iterations of Java, Perl, and Ruby.  I have a Bachelor’s degree in Computer Science and have spent the past three years at Dawn Technologies my main responsibilities revolved around building cutting-edge mobile applications and games, testing and debugging applications and developing updates to improve app usability. I also collaborated with the marketing department to help define client needs and how best to accommodate them.</string>
+<string name="tyri_intro">In addition to my formal education and training, my 4+ year history of hands-on experiences as an Android Developer make me an excellent match for the unique demands of this opportunity. I have a a passion for pushing mobile technologies to the limit and have experience with a wide variety of Android device resolutions. As an engineer and manager I challenge and enjoyed being challenged, and I have a reputation for producing the best product experience, irrespective of its category.</string>
+    <string name="jon_intro">I have a Bachelor’s degree in Computer Science, Master’s degree in Information Technology, and hands-on experience using .Net languages to create and implement software applications, I am confident I will be an asset to your organization.</string>
 </resources>

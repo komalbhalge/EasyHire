@@ -1,8 +1,11 @@
 package android.kodroid.com.easyhiring.ui
 
+import android.databinding.DataBindingUtil
 import android.kodroid.com.easyhiring.R
+import android.kodroid.com.easyhiring.data.CandidateData
 import android.kodroid.com.easyhiring.data.CandidateStatus
 import android.kodroid.com.easyhiring.data.Constants
+import android.kodroid.com.easyhiring.databinding.ActivityDetailBinding
 import android.kodroid.com.easyhiring.interfaces.CandidateRowListener
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -10,18 +13,19 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.RadioGroup
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.candidate_detail_layout.*
+import kotlinx.android.synthetic.main.activity_detail.*
 
 class CandidateDetail : AppCompatActivity(), CandidateRowListener {
     var mDatabase: DatabaseReference? = null
     private var candidateStatus: Int = 0
     private lateinit var candidateId: String
     private var rowListener: CandidateRowListener = this as CandidateRowListener
+    private lateinit var candidate: CandidateData
+    lateinit var mainBinding: ActivityDetailBinding
 
     override fun modifyCandidateState(candidateId: String, status: Int) {
         val itemReference = mDatabase!!.child(Constants.FIREBASE_ITEM).child(candidateId)
@@ -30,7 +34,7 @@ class CandidateDetail : AppCompatActivity(), CandidateRowListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.candidate_detail_layout)
+        mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_detail)
 
         mDatabase = FirebaseDatabase.getInstance().reference
 
@@ -45,16 +49,8 @@ class CandidateDetail : AppCompatActivity(), CandidateRowListener {
         //store the candidate status
         candidateStatus = Integer.parseInt(bundle?.get(Constants.CANDIDATE_STATUS).toString())
 
-        //set candidate image
-        Glide.with(this)
-                .load(bundle?.getString(Constants.CANDIDATE_IMAGE))
-                .apply(RequestOptions().placeholder(R.mipmap.ic_launcher).centerCrop().fitCenter().error(R.mipmap.ic_launcher))
-                .into(itemImage)
-
-        //set name and description
-        itemName.setText(bundle?.getString(Constants.CANDIDATE_NAME))
-        itemDescription.setText(bundle?.getString(Constants.CANDIDATE_DESC))
-
+        candidate = CandidateData(candidateId, candidateStatus, bundle?.getString(Constants.CANDIDATE_NAME), bundle?.getString(Constants.CANDIDATE_DESC), bundle?.getString(Constants.CANDIDATE_IMAGE))
+        mainBinding.candidateData = candidate
 
         //Display Candidate status
         when (candidateStatus) {
@@ -102,7 +98,7 @@ class CandidateDetail : AppCompatActivity(), CandidateRowListener {
                 }
             }
         }
-        builder.setNegativeButton("No"){dialog,which ->
+        builder.setNegativeButton("No") { dialog, which ->
             //Display Candidate status
             when (candidateStatus) {
                 CandidateStatus.SHORTLISTED.ordinal -> selected.isChecked = true
@@ -112,7 +108,7 @@ class CandidateDetail : AppCompatActivity(), CandidateRowListener {
                     radiogroup_results.clearCheck()
                 }
             }
-           dialog.dismiss()
+            dialog.dismiss()
         }
         // Finally, make the alert dialog using builder
         val dialog: AlertDialog = builder.create()

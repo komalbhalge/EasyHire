@@ -18,7 +18,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.request.RequestOptions
-import kotlinx.android.synthetic.main.candidate_detail_layout.*
+import kotlinx.android.synthetic.main.activity_detail.*
 
 public  class MyBaseAdapter(context: Context, candidateList: MutableList<CandidateData>): RecyclerView.Adapter<MyBaseAdapter.ViewHolder>() {
     private var itemList = candidateList
@@ -66,7 +66,6 @@ public  class MyBaseAdapter(context: Context, candidateList: MutableList<Candida
                     status_image.visibility=View.INVISIBLE
                 }
             }
-
             //set the onclick listener for the singlt list item
             itemView.setOnClickListener({
                 Log.e("ItemClicked", data.name)

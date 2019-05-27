@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="candidateData"
+            type="android.kodroid.com.easyhiring.data.CandidateData" />
+    </data>
+
+<android.support.constraint.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
@@ -14,7 +21,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:adjustViewBounds="true"
-        android:src="@mipmap/ic_launcher"
+        app:imageUrl="@{candidateData.profile_picture}"
         app:layout_constraintBottom_toTopOf="@+id/itemName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -27,27 +34,28 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="top|start"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:layout_weight="1"
-        android:text="Name"
+        android:textColor="@android:color/black"
+        android:text="@{candidateData.name}"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/itemDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemImage"
-        tools:text="Some date" />
+        app:layout_constraintTop_toBottomOf="@+id/itemImage" />
 
     <TextView
         android:id="@+id/itemDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#5776ac"
         android:layout_gravity="center|start"
         android:layout_weight="1"
-        android:ellipsize="end"
-        android:maxLines="3"
-        android:text="jhvfhjdsfiegfiUEWFG"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        android:text="@{candidateData.description}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +65,7 @@
         android:id="@+id/radiogroup_results"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:gravity="center"
         android:orientation="horizontal"
         android:weightSum="3"
@@ -113,3 +121,4 @@
     </RadioGroup>
 
 </android.support.constraint.ConstraintLayout>
+</layout>

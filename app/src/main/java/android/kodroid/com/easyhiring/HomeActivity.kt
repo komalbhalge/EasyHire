@@ -34,6 +34,8 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+    }
+    private fun init() {
         var itemListener: ValueEventListener = object : ValueEventListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -48,8 +50,6 @@ class HomeActivity : AppCompatActivity() {
             }
         }
         mDataListener=itemListener
-    }
-    private fun init() {
         mDatabase = FirebaseDatabase.getInstance().reference
         toDoItemList = mutableListOf<CandidateData>()
         adapter = MyBaseAdapter(this, toDoItemList!!)
