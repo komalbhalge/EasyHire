@@ -19,14 +19,15 @@ import kotlinx.android.synthetic.main.candidate_detail_layout.*
 
 class CandidateDetail : AppCompatActivity(), CandidateRowListener {
     var mDatabase: DatabaseReference? = null
-    private var rowListener: CandidateRowListener = this as CandidateRowListener
-    override fun modifyCandidateState(candidateId: String, status: Int) {
-        val itemReference = mDatabase!!.child(Constants.FIREBASE_ITEM).child(candidateId)
-        itemReference.child("status").setValue(status);
-    }
-
     private var candidateStatus: Int = 0
     private lateinit var candidateId: String
+    private var rowListener: CandidateRowListener = this as CandidateRowListener
+
+    override fun modifyCandidateState(candidateId: String, status: Int) {
+        val itemReference = mDatabase!!.child(Constants.FIREBASE_ITEM).child(candidateId)
+        itemReference.child(Constants.CANDIDATE_STATUS).setValue(status);
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.candidate_detail_layout)
@@ -34,6 +35,7 @@ class CandidateDetail : AppCompatActivity(), CandidateRowListener {
         mDatabase = FirebaseDatabase.getInstance().reference
 
         val bundle: Bundle? = intent.extras
+
         setData(bundle)
     }
 
@@ -60,9 +62,6 @@ class CandidateDetail : AppCompatActivity(), CandidateRowListener {
             CandidateStatus.ON_HOLD.ordinal -> onhold.isChecked = true
             CandidateStatus.REJECTED.ordinal -> rejected.isChecked = true
             CandidateStatus.NONE.ordinal -> {
-               /* selected.isChecked = false
-                onhold.isChecked = false
-                rejected.isChecked = false*/
                 radiogroup_results.clearCheck()
             }
         }
@@ -76,7 +75,7 @@ class CandidateDetail : AppCompatActivity(), CandidateRowListener {
         val builder = AlertDialog.Builder(this@CandidateDetail)
 
         // Display a message on alert dialog
-        builder.setMessage("Are you sure you want to change the status?")
+        builder.setMessage(R.string.dialog_text)
 
         builder.setCancelable(false)
 
@@ -110,9 +109,6 @@ class CandidateDetail : AppCompatActivity(), CandidateRowListener {
                 CandidateStatus.ON_HOLD.ordinal -> onhold.isChecked = true
                 CandidateStatus.REJECTED.ordinal -> rejected.isChecked = true
                 CandidateStatus.NONE.ordinal -> {
-                    /* selected.isChecked = false
-                     onhold.isChecked = false
-                     rejected.isChecked = false*/
                     radiogroup_results.clearCheck()
                 }
             }
