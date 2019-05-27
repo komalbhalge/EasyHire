@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "817035085989",
+    "firebase_url": "https://easyhiring-65f0c.firebaseio.com",
+    "project_id": "easyhiring-65f0c",
+    "storage_bucket": "easyhiring-65f0c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:817035085989:android:d1f0a2249a275f34",
+        "android_client_info": {
+          "package_name": "android.kodroid.com.easyhiring"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "817035085989-2kj15fkmb51ntcnl3rb07iqvn1r1sehq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "android.kodroid.com.easyhiring",
+            "certificate_hash": "c7c405b56173430965720694a5224e7a5aec310b"
+          }
+        },
+        {
+          "client_id": "817035085989-5rar4puq08766k4p97lag7mihq3ff4m9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBx2_h9kwnlVQxusyomr1Qy69_KwN81b5Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "817035085989-5rar4puq08766k4p97lag7mihq3ff4m9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
